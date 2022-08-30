@@ -1,9 +1,9 @@
-const URL = 'https://japceibal.github.io/emercado-api/cats_products/101.json';
 
 function listado(){ 
-fetch(URL)
+fetch(PRODUCTS_URL + localStorage.getItem("catID") + EXT_TYPE)
 .then(res => res.json())
 .then(data =>{
+    document.getElementById("cat-name").innerHTML += data.catName;
     let htmlContentToAppend = "";
     for(let i = 0; i < data.products.length; i++){ 
         let producto = data.products[i];

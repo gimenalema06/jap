@@ -12,3 +12,21 @@ document.addEventListener("DOMContentLoaded", function(){
         window.location = "products.html"
     });
 });
+
+
+
+if (localStorage.getItem("user")) {
+    let htmlContentToAppend = "";
+    htmlContentToAppend += `
+    <a class="nav-link" href="login.html">`+localStorage.getItem("user")+ `</a>
+    `
+    document.getElementById("User_place").innerHTML = htmlContentToAppend;
+    localStorage.removeItem("user");
+}
+else {
+    let htmlContentToAppend = "";
+    htmlContentToAppend += `
+    <a class="nav-link" href="login.html">Ingresar</a>
+    `
+    document.getElementById("User_place").innerHTML = htmlContentToAppend;
+}
