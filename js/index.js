@@ -18,15 +18,25 @@ document.addEventListener("DOMContentLoaded", function(){
 if (localStorage.getItem("user")) {
     let htmlContentToAppend = "";
     htmlContentToAppend += `
-    <a class="nav-link" href="login.html">`+localStorage.getItem("user")+ `</a>
+    <a class="nav-link">`+localStorage.getItem("user")+ `</a>
+    
     `
     document.getElementById("User_place").innerHTML = htmlContentToAppend;
-    localStorage.removeItem("user");
+    htmlContentToAppend=`
+    <button type="button" style="background-color: black" id="remove_user">
+        &#10060
+    </button>`
+    document.getElementById("logout").innerHTML = htmlContentToAppend;
+
+    document.getElementById('remove_user').addEventListener("click", function(){
+        let htmlContentToAppend = "";
+        htmlContentToAppend = `
+        <a class="nav-link" href="login.html">Ingresar</a>
+        `
+        document.getElementById("User_place").innerHTML = htmlContentToAppend;
+        document.getElementById("logout").innerHTML = "";
+        localStorage.removeItem("user"); 
+    })
 }
-else {
-    let htmlContentToAppend = "";
-    htmlContentToAppend += `
-    <a class="nav-link" href="login.html">Ingresar</a>
-    `
-    document.getElementById("User_place").innerHTML = htmlContentToAppend;
-}
+
+
