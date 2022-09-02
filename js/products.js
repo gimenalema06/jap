@@ -3,7 +3,7 @@ const ORDER_ASC_BY_PRICE = "$ASC";
 const ORDER_DESC_BY_PRICE = "$DESC" ; 
 const ORDER_BY_RELEV = "RELEV" ; 
 productos = [];
-let min = 0;
+let min;
 let max;
 
 function sortByCriterio(criterio, array, min, max){
@@ -35,6 +35,7 @@ fetch(PRODUCTS_URL + localStorage.getItem("catID") + EXT_TYPE)
 .then(data =>{
     document.getElementById("cat-name").innerHTML += data.catName;
     let productos = data.products;
+    min = 0;
     max = find_Max_Cost(productos);
     mostrarListado(productos, min, max);  
 
@@ -51,8 +52,10 @@ fetch(PRODUCTS_URL + localStorage.getItem("catID") + EXT_TYPE)
     });
 
     document.getElementById("rangeFilterCount").addEventListener("click", function(){
-        if (document.getElementById("rangeFilterCountMin").value) min = document.getElementById("rangeFilterCountMin").value;
-        if (document.getElementById("rangeFilterCountMax").value) max = document.getElementById("rangeFilterCountMax").value;
+        if (document.getElementById("rangeFilterCountMin").value) min = document.getElementById("rangeFilterCountMin").value
+        else min = 0;
+        if (document.getElementById("rangeFilterCountMax").value) max = document.getElementById("rangeFilterCountMax").value
+        else max = find_Max_Cost(productos);
         if (min <= max) mostrarListado(productos, min, max);
     });
 
