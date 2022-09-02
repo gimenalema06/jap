@@ -47,6 +47,11 @@
     <div class="row">
       <div class="col text-end">
         <div class="btn-group btn-group-toggle mb-4" data-bs-toggle="buttons">
+          <input type="radio" class="btn-check" name="options" id="relevancia">
+          <label class="btn btn-light" for="relevancia"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-arrow-up" viewBox="0 0 16 16">
+            <path d="M8 11a.5.5 0 0 0 .5-.5V6.707l1.146 1.147a.5.5 0 0 0 .708-.708l-2-2a.5.5 0 0 0-.708 0l-2 2a.5.5 0 1 0 .708.708L7.5 6.707V10.5a.5.5 0 0 0 .5.5z"/>
+            <path d="M4 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H4zm0 1h8a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z"/>
+          </svg></i></label>
           <input type="radio" class="btn-check" name="options" id="sortAsc">
           <label class="btn btn-light" for="sortAsc"><i class="fas fa-sort-amount-up mr-1"></i></label>
           <input type="radio" class="btn-check" name="options" id="sortDesc">
@@ -61,10 +66,10 @@
             <p class="font-weight-normal text-end my-2">Precio</p>
           </div>
           <div class="col">
-            <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin">
+            <input class="form-control" type="number" min="0" placeholder="min." id="rangeFilterCountMin">
           </div>
           <div class="col">
-            <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax">
+            <input class="form-control" type="number" min="0" placeholder="máx." id="rangeFilterCountMax">
           </div>
           <div class="col-3 p-0">
             <div class="btn-group" role="group">
