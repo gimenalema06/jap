@@ -60,6 +60,8 @@ fetch(PRODUCTS_URL + localStorage.getItem("catID") + EXT_TYPE)
         min = 0;
         max = find_Max_Cost(productos);
         mostrarListado(productos, min, max);
+        document.getElementById("rangeFilterCountMin").value = "";
+        document.getElementById("rangeFilterCountMax").value = "";
     });
 })}) 
 
