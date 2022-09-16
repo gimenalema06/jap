@@ -68,12 +68,19 @@ fetch(PRODUCTS_URL + localStorage.getItem("catID") + EXT_TYPE)
     });
 })}) 
 
+
+function show_product(id){
+    localStorage.setItem("productID", id);
+    window.location = "product-info.html";
+}
+
+
 function mostrarListado(productos, min, max){
     let htmlContentToAppend = "";
     for(let i = 0; i < productos.length; i++){ 
         if (productos[i].cost >= min && productos[i].cost <= max){
             htmlContentToAppend += `
-            <div class="list-group-item list-group-item-action">
+            <div class="list-group-item list-group-item-action" onclick="show_product(${productos[i].id})">
                 <div class="row">
                     <div class="col-3">
                         <img src="` + productos[i].image + `" alt="product image" class="img-thumbnail">
