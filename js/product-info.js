@@ -62,3 +62,42 @@ fetch(PRODUCT_INFO_COMMENTS_URL + localStorage.getItem("productID") + EXT_TYPE)
     
 })
 
+document.getElementById("comment").addEventListener("click" , function(){
+    const d = new Date();
+    const year = d.getFullYear();
+    const month =('0' + d.getMonth()).slice(-2);
+    const day = ('0' + d.getDate()).slice(-2);
+    const hour = ('0' +d.getHours()).slice(-2);
+    const min = ('0' + d.getMinutes()).slice(-2);
+    const sec = ('0' + d.getSeconds()).slice(-2);
+    
+    let UserName = "Anónimo";
+    if (localStorage.getItem("user")) UserName = localStorage.getItem("user");
+
+    let htmlContentToAppend3 = `
+        <div style="float:right ; margin-right:15px"></div>
+        <div class="text-bg-light p-3 border border-secondary" style="border-radius: 50px">
+            <div id="starComment" style="float:right ; margin-right:15px"></div>
+            <p style="margin-left:20px"> <strong>${UserName}</strong> dice: &nbsp</p>
+            <div class="row" style="margin-left:20px">
+                <div class="col"><p  style="font-family:sans; font-style:oblique; font-size:120%"> "${document.getElementById("newComment").value}"</p></div>
+            </div>
+            <div class="row">
+                <div class="col">
+                <p class="text-end text-muted" style="margin-right:15px">Publicado el ${year}-${month}-${day} ${hour}:${min}:${sec}</p>
+                </div>
+            </div>
+        </div>
+        <br>`;
+
+    document.getElementById('comments').innerHTML += htmlContentToAppend3;
+    document.getElementById("newComment").value = "";
+
+
+    
+   
+
+})
+
+
+
