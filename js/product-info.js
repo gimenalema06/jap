@@ -88,13 +88,19 @@ document.getElementById("comment").addEventListener("click" , function(){
                 </div>
             </div>
         </div>
-        <br>`;
+        <br>`
 
     document.getElementById('comments').innerHTML += htmlContentToAppend3;
     document.getElementById("newComment").value = "";
-
-
-    
+    htmlContentToAppend3 = "";
+    let score = document.getElementById("comment-score").value.length;
+    for (let j=0; j<score; j++){
+        htmlContentToAppend3 += `<span class="fa fa-star checked blink"></span>`
+    }
+    for (let k= score; k<5 ; k++){
+        htmlContentToAppend3 += `<span class="fa fa-star blink"></span>`
+    }
+    document.getElementById("starComment").innerHTML = htmlContentToAppend3;
    
 
 })
