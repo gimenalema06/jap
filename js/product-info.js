@@ -101,7 +101,6 @@ document.getElementById("comment").addEventListener("click" , function(){
         htmlContentToAppend3 += `<span class="fa fa-star blink"></span>`
     }
     document.getElementById("starComment").innerHTML = htmlContentToAppend3;
-   
 
 })
 
