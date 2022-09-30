@@ -66,6 +66,18 @@ fetch(PRODUCTS_URL + localStorage.getItem("catID") + EXT_TYPE)
         document.getElementById("rangeFilterCountMin").value = "";
         document.getElementById("rangeFilterCountMax").value = "";
     });
+
+    document.getElementById("search").addEventListener("click", function(){
+        let array = [];
+        let searched_info = document.getElementById("search_place").value;
+        for (let i=0; i<productos.length ; i++){
+            if (productos[i].name.toLowerCase().includes(searched_info.toLowerCase()))
+                array.push(productos[i]);
+            else if (productos[i].description.toLowerCase().includes(searched_info.toLowerCase()))
+                array.push(productos[i]);
+        }
+        mostrarListado(array, min, max);
+    })
 })}) 
 
 
