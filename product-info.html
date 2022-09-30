@@ -57,13 +57,22 @@
     .relName {
       text-align: center;
     }
+    
+    .contain{
+      display: flex;
+      justify-content: space-between;
+    }
+    .nav-item {
+      margin-left: 230px ;
+    }
 
+  
   </style>
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-1">
-    <div class="container">
+    <div class="contain">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -81,8 +90,6 @@
           </li>
           <li class="nav-item" id="User_place">
             <a class="nav-link" href="login.html">Ingresar</a>
-          </li>
-          <li class="nav-item" id="logout">
           </li>
         </ul>
       </div>
