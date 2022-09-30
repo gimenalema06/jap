@@ -15,30 +15,48 @@ fetch(PRODUCT_INFO_URL + localStorage.getItem("productID") + EXT_TYPE)
         <strong>Cantidad de Vendidos</strong>
         <p>${data.soldCount}</p>
         <strong>Imágenes ilustrativas</strong>
-        <div id="images"></div>
+        <div id="images">
+        <figure class="icon-cards mt-3">
+        <div class="icon-cards__content" onclick="pause_start()" id="carrusel"> 
+            <div class="icon-cards__item d-flex align-items-center justify-content-center"><span class="h1"><img src=${data.images[0]} style="width:460px"></span></div>
+            <div class="icon-cards__item d-flex align-items-center justify-content-center"><span class="h1"><img src=${data.images[1]} style="width:460px"></span></div>
+            <div class="icon-cards__item d-flex align-items-center justify-content-center"><span class="h1"><img src=${data.images[2]} style="width:460px"></span></div>
+            <div class="icon-cards__item d-flex align-items-center justify-content-center"><span class="h1"><img src=${data.images[3]} style="width:460px"></span></div>
+        </div>
+        </figure>
+    
+        </div>
     </div>
     `
     document.getElementById('contenedor').innerHTML += htmlContentToAppend;
-    for (let i=0; i<data.images.length; i++){
-        htmlContentToAppend = `
-        <img src=${data.images[i]} style="width:300px" class="zoom">`
-        document.getElementById('images').innerHTML += htmlContentToAppend;
-    }
+   // for (let i=0; i<data.images.length; i++){
+        //htmlContentToAppend = `
+       // <div class="icon-cards__item d-flex align-items-center justify-content-center"><img src=${data.images[i]} style="width:300px"></div>`
+       // document.getElementById('icon-cards__content').innerHTML += htmlContentToAppend;
+   // }
     for (let i=0; i<data.relatedProducts.length; i++){
         htmlContentToAppend = `
-        <div class="relImg">
+        <div class="relImg" style="margin-bottom: 50px">
             <img src=${data.relatedProducts[i].image} style="width:300px;" onclick="redirectFunction(${data.relatedProducts[i].id})"> <br><br>
             <p class="relName">${data.relatedProducts[i].name}</p>
         </div>
         `
         document.getElementById('relatedImg').innerHTML += htmlContentToAppend;
     }
+
 })
 
 function redirectFunction(id){
     localStorage.setItem("productID", id); 
     window.location = "product-info.html";
 }
+
+function pause_start(){
+    let elemento = document.getElementById("carrusel");
+    if (!elemento.classList.contains("paused")) elemento.className += " paused"
+    else elemento.classList.remove("paused");
+}
+
 
 fetch(PRODUCT_INFO_COMMENTS_URL + localStorage.getItem("productID") + EXT_TYPE)
 .then(resp => resp.json())
