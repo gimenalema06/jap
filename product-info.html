@@ -14,7 +14,7 @@
     .blink {
       animation: blink 1s steps(1, end) infinite;
     }
-
+   
     @keyframes blink {
       0% {
         opacity: 1;
@@ -34,6 +34,30 @@
     .zoom:hover {
       transform: scale(2); 
     }
+
+    #relatedImg {
+      display: flex;
+      justify-content: space-evenly;
+      padding-bottom: 15px;
+    }
+
+    #relatedP {
+      border-radius: 5px;
+      border: 2px dashed darkgray;
+      padding: 15px;
+      max-width: 1600px;
+      height: 300px;
+      margin: 10px 130px 10px 130px;
+    }
+
+    .relImg:hover {
+      border: 2px dashed darkgray;
+    }
+
+    .relName {
+      text-align: center;
+    }
+
   </style>
 </head>
 
@@ -91,8 +115,11 @@
         <br>
          <button type="button" class="btn btn-outline-secondary" id="comment">Comentar</button>
        </form>
+    </div >
+    <div id="relatedP">
+      <strong>Productos recomendados</strong> <br>
+      <div id="relatedImg"></div>
     </div>
-
 
 
   </main>

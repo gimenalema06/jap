@@ -24,7 +24,21 @@ fetch(PRODUCT_INFO_URL + localStorage.getItem("productID") + EXT_TYPE)
         <img src=${data.images[i]} style="width:300px" class="zoom">`
         document.getElementById('images').innerHTML += htmlContentToAppend;
     }
+    for (let i=0; i<data.relatedProducts.length; i++){
+        htmlContentToAppend = `
+        <div class="relImg">
+            <img src=${data.relatedProducts[i].image} style="width:300px;" onclick="redirectFunction(${data.relatedProducts[i].id})"> <br><br>
+            <p class="relName">${data.relatedProducts[i].name}</p>
+        </div>
+        `
+        document.getElementById('relatedImg').innerHTML += htmlContentToAppend;
+    }
 })
+
+function redirectFunction(id){
+    localStorage.setItem("productID", id); 
+    window.location = "product-info.html";
+}
 
 fetch(PRODUCT_INFO_COMMENTS_URL + localStorage.getItem("productID") + EXT_TYPE)
 .then(resp => resp.json())
