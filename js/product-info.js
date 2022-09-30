@@ -29,11 +29,6 @@ fetch(PRODUCT_INFO_URL + localStorage.getItem("productID") + EXT_TYPE)
     </div>
     `
     document.getElementById('contenedor').innerHTML += htmlContentToAppend;
-   // for (let i=0; i<data.images.length; i++){
-        //htmlContentToAppend = `
-       // <div class="icon-cards__item d-flex align-items-center justify-content-center"><img src=${data.images[i]} style="width:300px"></div>`
-       // document.getElementById('icon-cards__content').innerHTML += htmlContentToAppend;
-   // }
     for (let i=0; i<data.relatedProducts.length; i++){
         htmlContentToAppend = `
         <div class="relImg" style="margin-bottom: 50px">
