@@ -1,3 +1,71 @@
+document.addEventListener("DOMContentLoaded", function () {
+    fetch(CART_INFO_URL + '25801' + EXT_TYPE)
+        .then(res => res.json())
+        .then(data => {
+            let htmlContentToAppend = `
+            <table class="table">
+        <thead>
+            <tr>
+            <th scope="col"></th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Costo</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Subtotal</th>
+            </tr>
+        </thead>
+        <tbody id="elements">
+        </tbody>
+        </table>`
+
+
+            document.getElementById("container").innerHTML += htmlContentToAppend;
+            showProdInCart(data.articles);
+
+        })
+})
+
+
+function showProdInCart(Articles) {
+    let htmlContentToAppend2 = '';
+    let articulo = Articles[0]; //falta convertir el precio en tiempo real
+    htmlContentToAppend2 += `
+        <tr>
+            <td scope="row"><img src="${articulo.image}" class="img-thumbnail" style="max-width: 10%"></td>
+            <td>${articulo.name}</td>
+            <td>${articulo.currency +` `+ articulo.unitCost}</td>   
+            <td><input value="1" id="cant"></td>
+            <td>Calcular</td>
+        </tr>
+        `
+
+    document.getElementById("elements").innerHTML = htmlContentToAppend2;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 if (localStorage.getItem("user")) {
     let htmlContentToAppend = "";
     htmlContentToAppend += `
@@ -32,12 +100,12 @@ if (localStorage.getItem("user")) {
     </div>  
     `
     document.getElementById("User_place").innerHTML = htmlContentToAppend;
-    document.getElementById('remove_user').addEventListener("click", function(){
+    document.getElementById('remove_user').addEventListener("click", function () {
         let htmlContentToAppend = "";
         htmlContentToAppend = `
         <a class="nav-link" href="login.html">Ingresar</a>
         `
         document.getElementById("User_place").innerHTML = htmlContentToAppend;
-        localStorage.removeItem("user"); 
+        localStorage.removeItem("user");
     })
 }
