@@ -20,10 +20,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
             document.getElementById("container").innerHTML += htmlContentToAppend;
             showProdInCart(data.articles);
+            array.push(data.articles);
 
         })
 })
 
+let array =[];
 
 function showProdInCart(Articles) {
     let htmlContentToAppend2 = '';
@@ -36,7 +38,7 @@ function showProdInCart(Articles) {
             <td scope="row"><img src="${articulo.image}" class="img-thumbnail" style="max-width: 50%"></td>
             <td>${articulo.name}</td>
             <td>${articulo.currency +` `+ articulo.unitCost}</td>   
-            <td><input value="1" id="cant" onkeyup="subtotal(${articulo.unitCost})"></td>
+            <td><input value="1" id="cant" onkeyup="subtotal()"></td>
             <td id="subtotal">${articulo.currency +` `+ articulo.unitCost}</td>
         </tr>
         `
@@ -46,8 +48,13 @@ function showProdInCart(Articles) {
    
 }
 
-function subtotal(precio){
-    document.getElementById("subtotal").innerHTML =  document.getElementById("cant").value * precio;
+function subtotal(){
+    let art = array[0];
+    //console.log(art[0].unitCost);
+    //console.log(document.getElementById("cant").value);
+    //console.log(art[0].currency+document.getElementById("cant").value * art[0].unitCost)
+    document.getElementById("subtotal").innerHTML =  art[0].currency+' '+document.getElementById("cant").value * art[0].unitCost;
+    //console.log(array[0]);
 }
 
 
