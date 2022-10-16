@@ -1,3 +1,4 @@
+let array =[];
 document.addEventListener("DOMContentLoaded", function () {
     fetch(CART_INFO_URL + '25801' + EXT_TYPE)
         .then(res => res.json())
@@ -25,13 +26,11 @@ document.addEventListener("DOMContentLoaded", function () {
         })
 })
 
-let array =[];
+
 
 function showProdInCart(Articles) {
     let htmlContentToAppend2 = '';
     let articulo = Articles[0];
-   // let precio = articulo.unitCost;
-    //let moneda = articulo.currency; 
     htmlContentToAppend2 += `
     
         <tr>
@@ -50,11 +49,7 @@ function showProdInCart(Articles) {
 
 function subtotal(){
     let art = array[0];
-    //console.log(art[0].unitCost);
-    //console.log(document.getElementById("cant").value);
-    //console.log(art[0].currency+document.getElementById("cant").value * art[0].unitCost)
     document.getElementById("subtotal").innerHTML =  art[0].currency+' '+document.getElementById("cant").value * art[0].unitCost;
-    //console.log(array[0]);
 }
 
 
