@@ -6,6 +6,7 @@ fetch(PRODUCT_INFO_URL + localStorage.getItem("productID") + EXT_TYPE)
     htmlContentToAppend = `
     <div class="container" style="border-bottom-style:dotted; border-bottom-color:black;"><h3 style="padding:25px">${data.name}</h3></div>
     <div class="container" style="padding: 25px; border-bottom-style:dotted; border-bottom-color:black;">
+        <button type="button" class="btn btn-success" style="float: right" onclick="addToCart(${data.id})">Comprar</button>
         <strong>Precio</strong>
         <p>${data.currency} &nbsp ${data.cost}</p>
         <strong>Descripción</strong>
@@ -16,7 +17,7 @@ fetch(PRODUCT_INFO_URL + localStorage.getItem("productID") + EXT_TYPE)
         <p>${data.soldCount}</p>
         <strong>Imágenes ilustrativas</strong>
         <div id="images">
-        <figure class="icon-cards mt-3">
+        <figure class="icon-cards">
         <div class="icon-cards__content" onclick="pause_start()" id="carrusel"> 
             <div class="icon-cards__item d-flex align-items-center justify-content-center"><span class="h1"><img src=${data.images[0]} style="width:460px"></span></div>
             <div class="icon-cards__item d-flex align-items-center justify-content-center"><span class="h1"><img src=${data.images[1]} style="width:460px"></span></div>
@@ -176,5 +177,8 @@ if (localStorage.getItem("user")) {
     })
 }
 
+function addToCart(ID){
+    localStorage.setItem("productToCart"+localStorage.length, ID);
+}
 
 

@@ -53,6 +53,12 @@ function subtotal(){
 }
 
 
+//desafiate
+if (localStorage.length>3){
+    ////completar, la idea es traer todos los elementos guardados en la local storage, irlos borrando y poniendo en el carrito, sin olvidar de calcular el subtotal 
+}
+
+
 
 
 
