@@ -1,4 +1,5 @@
-let array =[];
+let array = [];
+let array2=[];
 document.addEventListener("DOMContentLoaded", function () {
     fetch(CART_INFO_URL + '25801' + EXT_TYPE)
         .then(res => res.json())
@@ -24,6 +25,35 @@ document.addEventListener("DOMContentLoaded", function () {
             array.push(data.articles);
 
         })
+        if (localStorage.length > 3) {
+            let htmlContentToAppend = "";
+            for (let i = 0; i < localStorage.length; i++) {
+                if (localStorage.key(i).includes('productToCart')) {
+                    fetch(PRODUCT_INFO_URL + localStorage.getItem(localStorage.key(i)) + EXT_TYPE)
+                        .then(res => res.json())
+                        .then(data2 => {
+                            htmlContentToAppend = `
+                            <tr>
+                            <td scope="row"><img src="${data2.images[0]}" class="img-thumbnail" style="max-width: 50%"></td>
+                            <td>${data2.name}</td>
+                            <td>${data2.currency + ` ` + data2.cost}</td>   
+                            <td><input value="1" type="number" min="0" id="cant`+i+`" onkeyup="subtotalArt(${localStorage.getItem(localStorage.key(i))}, ${i})"></td>
+                            <td id="subtotal`+i+`">${data2.currency + ` ` + data2.cost}</td>
+                            </tr>
+                            `
+                            document.getElementById("elements").innerHTML += htmlContentToAppend;
+
+        
+        
+        
+                    })
+
+                }
+        
+        
+            }
+           
+        }
 })
 
 
@@ -36,26 +66,34 @@ function showProdInCart(Articles) {
         <tr>
             <td scope="row"><img src="${articulo.image}" class="img-thumbnail" style="max-width: 50%"></td>
             <td>${articulo.name}</td>
-            <td>${articulo.currency +` `+ articulo.unitCost}</td>   
-            <td><input value="1" id="cant" onkeyup="subtotal()"></td>
-            <td id="subtotal">${articulo.currency +` `+ articulo.unitCost}</td>
+            <td>${articulo.currency + ` ` + articulo.unitCost}</td>   
+            <td><input value="1" type="number" min="0" id="cant" onkeyup="subtotal()"></td>
+            <td id="subtotal">${articulo.currency + ` ` + articulo.unitCost}</td>
         </tr>
         `
 
     document.getElementById("elements").innerHTML = htmlContentToAppend2;
 
-   
+
 }
 
-function subtotal(){
+function subtotal() {
     let art = array[0];
-    document.getElementById("subtotal").innerHTML =  art[0].currency+' '+document.getElementById("cant").value * art[0].unitCost;
+    document.getElementById("subtotal").innerHTML = art[0].currency + ' ' + document.getElementById("cant").value * art[0].unitCost;
+
 }
 
 
-//desafiate
-if (localStorage.length>3){
-    ////completar, la idea es traer todos los elementos guardados en la local storage, irlos borrando y poniendo en el carrito, sin olvidar de calcular el subtotal 
+
+
+
+//esta funcion es el subtotal de los articulos del desafiate
+function subtotalArt(id, index) {
+    fetch(PRODUCT_INFO_URL + id + EXT_TYPE)
+        .then(res => res.json())
+        .then(data => {
+            document.getElementById("subtotal"+ index).innerHTML = data.currency + ' '+ document.getElementById("cant"+index).value * data.cost;
+        })
 }
 
 

@@ -6,7 +6,7 @@ fetch(PRODUCT_INFO_URL + localStorage.getItem("productID") + EXT_TYPE)
     htmlContentToAppend = `
     <div class="container" style="border-bottom-style:dotted; border-bottom-color:black;"><h3 style="padding:25px">${data.name}</h3></div>
     <div class="container" style="padding: 25px; border-bottom-style:dotted; border-bottom-color:black;">
-        <button type="button" class="btn btn-success" style="float: right" onclick="addToCart(${data.id})">Comprar</button>
+        <button type="button" class="btn btn-success" style="float: right" onclick="addToCart(${data.id})" id="buy">Comprar</button>
         <strong>Precio</strong>
         <p>${data.currency} &nbsp ${data.cost}</p>
         <strong>Descripción</strong>
@@ -179,6 +179,7 @@ if (localStorage.getItem("user")) {
 
 function addToCart(ID){
     localStorage.setItem("productToCart"+localStorage.length, ID);
+    document.getElementById("buy").setAttribute("disabled", "");
 }
 
 
