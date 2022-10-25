@@ -178,8 +178,11 @@ if (localStorage.getItem("user")) {
 }
 
 function addToCart(ID){
+    let boton = document.getElementById("buy");
     localStorage.setItem("productToCart"+localStorage.length, ID);
-    document.getElementById("buy").setAttribute("disabled", "");
+    boton.setAttribute("disabled", "");
+    boton.innerHTML = "Añadido al carrito"
+
 }
 
 
