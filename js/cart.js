@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             <td scope="row"><img src="${data2.images[0]}" class="img-thumbnail" style="max-width: 50%"></td>
                             <td>${data2.name}</td>
                             <td>${data2.currency + ` ` + data2.cost}</td>   
-                            <td><input value="1" type="number" min="0" id="cant`+i+`" onkeyup="subtotalArt(${localStorage.getItem(localStorage.key(i))}, ${i})"></td>
+                            <td><input value="1" type="number" min="0" id="cant`+i+`" onchange="subtotalArt(${localStorage.getItem(localStorage.key(i))}, ${i})"></td>
                             <td id="subtotal`+i+`">${data2.currency + ` ` + data2.cost}</td>
                             </tr>
                             `
@@ -67,7 +67,7 @@ function showProdInCart(Articles) {
             <td scope="row"><img src="${articulo.image}" class="img-thumbnail" style="max-width: 50%"></td>
             <td>${articulo.name}</td>
             <td>${articulo.currency + ` ` + articulo.unitCost}</td>   
-            <td><input value="1" type="number" min="0" id="cant" onkeyup="subtotal()"></td>
+            <td><input value="1" type="number" min="0" id="cant" onchange="subtotal()"></td>
             <td id="subtotal">${articulo.currency + ` ` + articulo.unitCost}</td>
         </tr>
         `
