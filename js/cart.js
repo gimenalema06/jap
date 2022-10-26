@@ -87,7 +87,7 @@ function subtotal() {
 
 
 
-//esta funcion es el subtotal de los articulos del desafiate
+//esta funcion es el subtotal de los articulos añadidos
 function subtotalArt(id, index) {
     fetch(PRODUCT_INFO_URL + id + EXT_TYPE)
         .then(res => res.json())
@@ -95,6 +95,18 @@ function subtotalArt(id, index) {
             document.getElementById("subtotal"+ index).innerHTML = data.currency + ' '+ document.getElementById("cant"+index).value * data.cost;
         })
 }
+
+
+//calcular el subtotal de todos los articulos
+
+
+
+function convertUYtoUSD(price){
+    price = price / 40;
+    return price;
+}
+
+
 
 
 
