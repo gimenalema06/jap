@@ -99,7 +99,7 @@
         <input type="text" id="esquina" name="esquina" style="width:400px ;">
       </div>
     </div>
-    <div class="row mt-1 m-5 p-5">
+    <div class="row mt-1 m-5 p-5 mb-1">
       <div class="col">
         <h4 class="mb-3"> Costos</h4>
         <ul class="list-group mb-3">
@@ -123,10 +123,88 @@
             </div>
             <strong id="totalCostText"></strong>
           </li>
-          
         </ul>
       </div>
     </div>
+
+  <div class="row mt-1 m-5 p-5 pt-1">
+    <div class="col">
+      <h4 class="mb-3">Forma de pago</h4>
+      <div>
+        <span class="label" id="paymentType">No ha seleccionado</span>
+        <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#contidionsModal">Seleccionar</button>
+      </div>
+      <div class="invalid-feedback" id="paymentTypeFeedback">
+        Debe seleccionar una forma de pago
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" tableindex="-1" role="dialog" id="contidionsModal">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Forma de pago</h4>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="custom-control custom-radio">
+                <input id="creditCardPaymentRadio" name="paymentType" type="radio" class="custom-control-input">
+                <label class="custom-control-label" for="creditCardPaymentRadio">Tarjeta de crédito</label>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="creditCardNumber">Número de tarjeta</label>
+                <input type="text" class="form-control" id="creditCardNumber">
+                <div class="invalid-feedback">
+                  Ingresa un número de tarjeta
+                </div>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="creditCardSecurityCode">Código de seg.</label>
+                <input type="number" class="form-control" id="creditCardSecurityCode">
+                <div class="invalid-feedback">
+                  Ingresa un código de seguridad
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="dueDate">Vencimiento (MM/AA)</label>
+                <input type="text" class="form-control" id="dueDate">
+                <div class="invalid-feedback">
+                  Ingresa la fecha de vencimiento
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="custom-control custom-radio">
+                <input id="bankingRadio" name="paymentType" type="radio" class="custom-control-input">
+                <label class="custom-control-label" for="bankingRadio">Transferencia bancaria</label>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="bankAccountNumber">Número de cuenta</label>
+                <input type="text" class="form-control" id="bankAccountNumber">
+                <div class="invalid-feedback">
+                  Ingresa un número de cuenta
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   </main>
   <footer class="text-muted">
     <div class="container">
