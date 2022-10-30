@@ -71,7 +71,7 @@
       <div id="container"></div>
     </div>
     </div>
-    <form class="needs-validation" novalidate>
+    <form action="" class="needs-validation" id="formulario" novalidate onsubmit="checkPaymentMethod()">
       <div class="container p-4 border mt-4">
         <h4 class="p-1">Tipos de envío</h4>
         <input type="radio" name="envio" class="envio" id="premium" onchange="shippingCostAndTotal()" checked>
@@ -109,55 +109,52 @@
       </div>
       <div class="container direccion mt-4 border p-4">
         <div class="container row mt-1 mt-3 mb-1">
-        <div class="col">
-          <h4 class="mb-3"> Costos</h4>
-          <ul class="list-group mb-3">
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Subtotal</h6>
-                <h6 class="my-0" id="finalSubtotal"></h6>
-                <small class="text-muted">Costo unitario del producto por cantidad</small>
-              </div>
-              <span class="text-muted" id="subtotalText"></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Costo de envío</h6>
-                <h6 class="my-0" id="finalshippingCost"></h6>
-                <small class="text-muted">Según el tipo de envío</small>
-              </div>
-              <span class="text-muted" id="shippingText"></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between">
-              <div>
-                <h6 class="my-0">Total ($)</h6>
-                <h6 class="my-0" id="total"></h6>
-              </div>
-              <strong id="totalCostText"></strong>
-            </li>
-          </ul>
-        </div>
-      </div>
-      </div>
-      
-      <div class="container direccion mt-4 border p-4 mb-5">
-        <div class="container row mt-1 m-5 pt-2">
-        <div class="col">
-          <h4 class="mb-3">Forma de pago</h4>
-          <div>
-            <span class="label" id="paymentType">No ha seleccionado</span>
-            <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#contidionsModal"
-              id="selectPaymentMethod">Seleccionar</button>
-          </div>
-          <div class="invalid-feedback" id="paymentTypeFeedback">
-            Debe seleccionar una forma de pago
+          <div class="col">
+            <h4 class="mb-3"> Costos</h4>
+            <ul class="list-group mb-3">
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Subtotal</h6>
+                  <h6 class="my-0" id="finalSubtotal"></h6>
+                  <small class="text-muted">Costo unitario del producto por cantidad</small>
+                </div>
+                <span class="text-muted" id="subtotalText"></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between lh-condensed">
+                <div>
+                  <h6 class="my-0">Costo de envío</h6>
+                  <h6 class="my-0" id="finalshippingCost"></h6>
+                  <small class="text-muted">Según el tipo de envío</small>
+                </div>
+                <span class="text-muted" id="shippingText"></span>
+              </li>
+              <li class="list-group-item d-flex justify-content-between">
+                <div>
+                  <h6 class="my-0">Total ($)</h6>
+                  <h6 class="my-0" id="total"></h6>
+                </div>
+                <strong id="totalCostText"></strong>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
-      </div>
-      
 
-      
+      <div class="container direccion mt-4 border p-4 mb-5">
+        <div class="container row mt-1  pt-2">
+          <div class="col">
+            <h4 class="mb-3">Forma de pago</h4>
+            <div>
+              <span class="label" id="paymentType" class="is-invalid">No ha seleccionado</span>
+              <button type="button" class="btn btn-link is-invalid" data-bs-toggle="modal" data-bs-target="#contidionsModal"
+                id="selectPaymentMethod">Seleccionar</button>
+            </div>
+            <div class="invalid-feedback" id="paymentTypeFeedback">
+              Debe completar una forma de pago
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div class="modal fade" tableindex="-1" role="dialog" id="contidionsModal">
         <div class="modal-dialog" role="document">
@@ -169,7 +166,8 @@
               <div class="container">
                 <div class="row">
                   <div class="custom-control custom-radio">
-                    <input id="creditCardPaymentRadio" name="paymentType" type="radio" class="custom-control-input">
+                    <input id="creditCardPaymentRadio" name="paymentType" type="radio" class="form-check-input"
+                      required>
                     <label class="custom-control-label" for="creditCardPaymentRadio">Tarjeta de crédito</label>
                   </div>
                 </div>
@@ -177,14 +175,14 @@
                 <div class="row">
                   <div class="col-md-6 mb-3">
                     <label for="creditCardNumber">Número de tarjeta</label>
-                    <input type="text" class="form-control" id="creditCardNumber">
+                    <input type="text" class="form-control" id="creditCardNumber" required>
                     <div class="invalid-feedback">
                       Ingresa un número de tarjeta
                     </div>
                   </div>
                   <div class="col-md-4 mb-3">
                     <label for="creditCardSecurityCode">Código de seg.</label>
-                    <input type="number" class="form-control" id="creditCardSecurityCode">
+                    <input type="number" class="form-control" id="creditCardSecurityCode" min="0" required>
                     <div class="invalid-feedback">
                       Ingresa un código de seguridad
                     </div>
@@ -193,7 +191,7 @@
                 <div class="row">
                   <div class="col-md-6 mb-3">
                     <label for="dueDate">Vencimiento (MM/AA)</label>
-                    <input type="text" class="form-control" id="dueDate">
+                    <input type="text" class="form-control" id="dueDate" required>
                     <div class="invalid-feedback">
                       Ingresa la fecha de vencimiento
                     </div>
@@ -201,7 +199,7 @@
                 </div>
                 <div class="row">
                   <div class="custom-control custom-radio">
-                    <input id="bankingRadio" name="paymentType" type="radio" class="custom-control-input">
+                    <input id="bankingRadio" name="paymentType" type="radio" class="form-check-input" required>
                     <label class="custom-control-label" for="bankingRadio">Transferencia bancaria</label>
                   </div>
                 </div>
@@ -209,7 +207,7 @@
                 <div class="row">
                   <div class="col-md-6 mb-3">
                     <label for="bankAccountNumber">Número de cuenta</label>
-                    <input type="text" class="form-control" id="bankAccountNumber">
+                    <input type="text" class="form-control" id="bankAccountNumber" required>
                     <div class="invalid-feedback">
                       Ingresa un número de cuenta
                     </div>
@@ -223,11 +221,16 @@
           </div>
         </div>
       </div>
-
       <div class="container">
-        <button type="submit" class="btn btn-primary w-100">Finalizar compra</button>
+        <input type="submit" value="Finalizar Compra" class="btn btn-primary w-100">
       </div>
     </form>
+
+    <div class="alert alert-success alert-dismissible fade" role="alert" id="alert-success">
+      <p> ¡Has comprado con éxito! </p>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
   </main>
   <footer class="text-muted">
     <div class="container">
@@ -250,6 +253,27 @@
   <script src="js/bootstrap.bundle.min.js"></script>
   <script src="js/init.js"></script>
   <script src="js/cart.js"></script>
+  <script>
+    (function () {
+      'use strict'
+      var forms = document.querySelectorAll('.needs-validation')
+      Array.prototype.slice.call(forms)
+        .forEach(function (form) {
+          form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+              event.preventDefault()
+              event.stopPropagation()
+            } else {
+              alertOfSuccess();
+              event.preventDefault();
+            }
+
+            form.classList.add('was-validated')
+          }, false)
+        })
+
+    })()
+  </script>
 </body>
 
 </html>

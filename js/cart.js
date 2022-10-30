@@ -142,7 +142,7 @@ document.getElementById("creditCardPaymentRadio").addEventListener("change", fun
     document.getElementById("dueDate").disabled = false;
     document.getElementById("bankAccountNumber").disabled = true;
     document.getElementById("paymentType").innerHTML = "Ha seleccionado tarjeta de crédito"
-    document.getElementById("selectPaymentMethod").innerHTML = "Cambiar";
+    document.getElementById("selectPaymentMethod").innerHTML = "Modificar";
 })
 
 document.getElementById("bankingRadio").addEventListener("change", function () {
@@ -151,8 +151,20 @@ document.getElementById("bankingRadio").addEventListener("change", function () {
     document.getElementById("dueDate").disabled = true;
     document.getElementById("bankAccountNumber").disabled = false;
     document.getElementById("paymentType").innerHTML = "Ha seleccionado cuenta bancaria"
-    document.getElementById("selectPaymentMethod").innerHTML = "Cambiar";
+    document.getElementById("selectPaymentMethod").innerHTML = "Modificar";
 })
+
+function alertOfSuccess() {
+    document.getElementById("alert-success").classList.add("show");
+}
+
+function checkPaymentMethod(){
+    if (document.getElementById("paymentType").innerText.includes("No")){
+        document.getElementById("paymentTypeFeedback").classList.add("d-block");
+    } else {
+        document.getElementById("paymentTypeFeedback").classList.remove("d-block");
+    }
+}
 
 
 
