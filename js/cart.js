@@ -1,10 +1,10 @@
 let array = [];
-let array2=[];
-document.addEventListener("DOMContentLoaded", function () {
-    fetch(CART_INFO_URL + '25801' + EXT_TYPE)
-        .then(res => res.json())
-        .then(data => {
-            let htmlContentToAppend = `
+let array2 = [];
+
+fetch(CART_INFO_URL + '25801' + EXT_TYPE)
+    .then(res => res.json())
+    .then(data => {
+        let htmlContentToAppend = `
             <table class="table">
         <thead>
             <tr>
@@ -20,41 +20,40 @@ document.addEventListener("DOMContentLoaded", function () {
         </table>`
 
 
-            document.getElementById("container").innerHTML += htmlContentToAppend;
-            showProdInCart(data.articles);
-            array.push(data.articles);
+        document.getElementById("container").innerHTML += htmlContentToAppend;
+        showProdInCart(data.articles);
+        array.push(data.articles);
 
-        })
-        if (localStorage.length > 3) {
-            let htmlContentToAppend = "";
-            for (let i = 0; i < localStorage.length; i++) {
-                if (localStorage.key(i).includes('productToCart')) {
-                    fetch(PRODUCT_INFO_URL + localStorage.getItem(localStorage.key(i)) + EXT_TYPE)
-                        .then(res => res.json())
-                        .then(data2 => {
-                            htmlContentToAppend = `
+    })
+if (localStorage.length > 3) {
+    let htmlContentToAppend = "";
+    for (let i = 0; i < localStorage.length; i++) {
+        if (localStorage.key(i).includes('productToCart')) {
+            fetch(PRODUCT_INFO_URL + localStorage.getItem(localStorage.key(i)) + EXT_TYPE)
+                .then(res => res.json())
+                .then(data2 => {
+                    htmlContentToAppend = `
                             <tr>
                             <td scope="row"><img src="${data2.images[0]}" class="img-thumbnail" style="max-width: 50%"></td>
                             <td>${data2.name}</td>
                             <td>${data2.currency + ` ` + data2.cost}</td>   
-                            <td><input value="1" type="number" min="0" id="cant`+i+`" onchange="subtotalArt(${localStorage.getItem(localStorage.key(i))}, ${i})"></td>
-                            <td id="subtotal`+i+`">${data2.currency + ` ` + data2.cost}</td>
+                            <td><input value="1" type="number" min="0" id="cant`+ i + `" onchange="subtotalArt(${localStorage.getItem(localStorage.key(i))}, ${i})"></td>
+                            <td id="subtotal`+ i + `">${data2.currency + ` ` + data2.cost}</td>
                             </tr>
                             `
-                            document.getElementById("elements").innerHTML += htmlContentToAppend;
+                    document.getElementById("elements").innerHTML += htmlContentToAppend;
 
-        
-        
-        
-                    })
 
-                }
-        
-        
-            }
-           
+
+
+                })
+
         }
-})
+
+
+    }
+
+}
 
 
 
@@ -92,7 +91,7 @@ function subtotalArt(id, index) {
     fetch(PRODUCT_INFO_URL + id + EXT_TYPE)
         .then(res => res.json())
         .then(data => {
-            document.getElementById("subtotal"+ index).innerHTML = data.currency + ' '+ document.getElementById("cant"+index).value * data.cost;
+            document.getElementById("subtotal" + index).innerHTML = data.currency + ' ' + document.getElementById("cant" + index).value * data.cost;
         })
 }
 
@@ -101,12 +100,12 @@ function subtotalArt(id, index) {
 
 
 
-function convertUYtoUSD(price){
+function convertUYtoUSD(price) {
     price = price / 40;
     return price;
 }
 
-document.getElementById("creditCardPaymentRadio").addEventListener("change", function(){
+document.getElementById("creditCardPaymentRadio").addEventListener("change", function () {
     document.getElementById("creditCardNumber").disabled = false;
     document.getElementById("creditCardSecurityCode").disabled = false;
     document.getElementById("dueDate").disabled = false;
@@ -115,7 +114,7 @@ document.getElementById("creditCardPaymentRadio").addEventListener("change", fun
     document.getElementById("selectPaymentMethod").innerHTML = "Cambiar";
 })
 
-document.getElementById("bankingRadio").addEventListener("change", function(){
+document.getElementById("bankingRadio").addEventListener("change", function () {
     document.getElementById("creditCardNumber").disabled = true;
     document.getElementById("creditCardSecurityCode").disabled = true;
     document.getElementById("dueDate").disabled = true;
