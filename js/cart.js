@@ -37,12 +37,12 @@ if (localStorage.length > 3) {
                             <td scope="row"><img src="${data2.images[0]}" class="img-thumbnail" style="max-width: 50%"></td>
                             <td>${data2.name}</td>
                             <td>${data2.currency + ` ` + data2.cost}</td>   
-                            <td><input value="1" type="number" min="0" id="cant`+ i + `" onchange="subtotalArt(${localStorage.getItem(localStorage.key(i))}, ${i})"></td>
-                            <td id="subtotal`+ i + `">${data2.currency + ` ` + data2.cost}</td>
+                            <td><input value="1" type="number" min="0" id="cant`+ i + `" onchange="subtotalArt(${localStorage.getItem(localStorage.key(i))}, ${i}); sumOfSubtotals()" ></td>
+                            <td id="subtotal`+ i + `" class="cartElement">${data2.currency + ` ` + data2.cost}</td>
                             </tr>
                             `
                     document.getElementById("elements").innerHTML += htmlContentToAppend;
-
+                    sumOfSubtotals();
 
 
 
@@ -66,8 +66,8 @@ function showProdInCart(Articles) {
             <td scope="row"><img src="${articulo.image}" class="img-thumbnail" style="max-width: 50%"></td>
             <td>${articulo.name}</td>
             <td>${articulo.currency + ` ` + articulo.unitCost}</td>   
-            <td><input value="1" type="number" min="0" id="cant" onchange="subtotal()"></td>
-            <td id="subtotal">${articulo.currency + ` ` + articulo.unitCost}</td>
+            <td><input value="1" type="number" min="0" id="cant" onchange="subtotal(); sumOfSubtotals()"></td>
+            <td id="subtotal" class="cartElement">${articulo.currency + ` ` + articulo.unitCost}</td>
         </tr>
         `
 
@@ -83,21 +83,37 @@ function subtotal() {
 }
 
 
-
-
-
 //esta funcion es el subtotal de los articulos añadidos
 function subtotalArt(id, index) {
     fetch(PRODUCT_INFO_URL + id + EXT_TYPE)
         .then(res => res.json())
         .then(data => {
             document.getElementById("subtotal" + index).innerHTML = data.currency + ' ' + document.getElementById("cant" + index).value * data.cost;
+
         })
 }
 
 
 //calcular el subtotal de todos los articulos
-
+function sumOfSubtotals(){
+    let subtotal1 = 0;
+    let elemsInCart = document.getElementsByClassName("cartElement");
+    for (let i=0; i<elemsInCart.length; i++){
+        let element = elemsInCart[i].innerHTML;
+        if (element.includes("US")){
+            element = element.slice(4);
+            element = parseFloat(element);
+        } else {
+            element = element.slice(3);
+            element = parseFloat(element);
+            element = convertUYtoUSD(element);
+        }
+        subtotal1 += element;
+       
+    }
+    document.getElementById("finalSubtotal").innerHTML ="USD "+ subtotal1;
+    
+}
 
 
 function convertUYtoUSD(price) {

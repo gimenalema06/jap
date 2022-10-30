@@ -75,12 +75,12 @@
     </div>
     <div class="container p-4 border mt-4">
       <h4 class="p-1">Tipos de envío</h4>
-      <input type="radio" name="envio" class="envio">
+      <input type="radio" name="envio" class="envio" id="premium">
       <label>Premium 2 a 5 días</label><br>
-      <input type="radio" name="envio" class="envio">
+      <input type="radio" name="envio" class="envio" id="express">
       <label>Express 5 a 8 días</label><br>
-      <input type="radio" name="envio" class="envio">
-      <label>Standart 10 a 15 días</label>
+      <input type="radio" name="envio" class="envio" id="standard">
+      <label>Standard 10 a 15 días</label>
     </div>
     <div class="container direccion mt-4 border p-4">
       <h4 style="margin-bottom:20px ;">Dirección de envío</h4>
@@ -106,6 +106,7 @@
           <li class="list-group-item d-flex justify-content-between lh-condensed">
             <div>
               <h6 class="my-0">Subtotal</h6>
+              <h6 class="my-0" id="finalSubtotal"></h6>
               <small class="text-muted">Costo unitario del producto por cantidad</small> 
             </div>
             <span class="text-muted" id="subtotalText"></span>
