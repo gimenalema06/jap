@@ -83,7 +83,7 @@ function subtotal() {
 }
 
 
-//esta funcion es el subtotal de los articulos añadidos
+//esta funcion calcula el subtotal de los articulos añadidos
 function subtotalArt(id, index) {
     fetch(PRODUCT_INFO_URL + id + EXT_TYPE)
         .then(res => res.json())
@@ -95,12 +95,12 @@ function subtotalArt(id, index) {
 
 
 //calcular el subtotal de todos los articulos
-function sumOfSubtotals(){
+function sumOfSubtotals() {
     let subtotal1 = 0;
     let elemsInCart = document.getElementsByClassName("cartElement");
-    for (let i=0; i<elemsInCart.length; i++){
+    for (let i = 0; i < elemsInCart.length; i++) {
         let element = elemsInCart[i].innerHTML;
-        if (element.includes("US")){
+        if (element.includes("US")) {
             element = element.slice(4);
             element = parseFloat(element);
         } else {
@@ -109,11 +109,11 @@ function sumOfSubtotals(){
             element = convertUYtoUSD(element);
         }
         subtotal1 += element;
-       
+
     }
-    document.getElementById("finalSubtotal").innerHTML ="USD "+ subtotal1.toFixed(2);
+    document.getElementById("finalSubtotal").innerHTML = "USD " + subtotal1.toFixed(2);
     shippingCostAndTotal();
-    
+
 }
 
 function convertUYtoUSD(price) {
@@ -121,19 +121,19 @@ function convertUYtoUSD(price) {
     return price;
 }
 
-function shippingCostAndTotal(){
+function shippingCostAndTotal() {
     let subtotal = parseFloat(document.getElementById("finalSubtotal").innerHTML.slice(3));
     let cost;
-    if (document.getElementById("standard").checked){
-        cost =subtotal * 0.05;
-    } else if (document.getElementById("express").checked){
+    if (document.getElementById("standard").checked) {
+        cost = subtotal * 0.05;
+    } else if (document.getElementById("express").checked) {
         cost = subtotal * 0.07;
     } else {
         cost = subtotal * 0.15;
     }
     let total = cost + subtotal;
-    document.getElementById("finalshippingCost").innerHTML ="USD "+ cost.toFixed(2);
-    document.getElementById("total").innerHTML = "USD "+ total.toFixed(2);
+    document.getElementById("finalshippingCost").innerHTML = "USD " + cost.toFixed(2);
+    document.getElementById("total").innerHTML = "USD " + total.toFixed(2);
 }
 
 document.getElementById("creditCardPaymentRadio").addEventListener("change", function () {
@@ -158,8 +158,8 @@ function alertOfSuccess() {
     document.getElementById("alert-success").classList.add("show");
 }
 
-function checkPaymentMethod(){
-    if (document.getElementById("paymentType").innerText.includes("No")){
+function checkPaymentMethod() {
+    if (document.getElementById("paymentType").innerText.includes("No")) {
         document.getElementById("paymentTypeFeedback").classList.add("d-block");
     } else {
         document.getElementById("paymentTypeFeedback").classList.remove("d-block");
