@@ -106,6 +106,25 @@ function convertUYtoUSD(price){
     return price;
 }
 
+document.getElementById("creditCardPaymentRadio").addEventListener("change", function(){
+    document.getElementById("creditCardNumber").disabled = false;
+    document.getElementById("creditCardSecurityCode").disabled = false;
+    document.getElementById("dueDate").disabled = false;
+    document.getElementById("bankAccountNumber").disabled = true;
+    document.getElementById("paymentType").innerHTML = "Ha seleccionado tarjeta de crédito"
+    document.getElementById("selectPaymentMethod").innerHTML = "Cambiar";
+})
+
+document.getElementById("bankingRadio").addEventListener("change", function(){
+    document.getElementById("creditCardNumber").disabled = true;
+    document.getElementById("creditCardSecurityCode").disabled = true;
+    document.getElementById("dueDate").disabled = true;
+    document.getElementById("bankAccountNumber").disabled = false;
+    document.getElementById("paymentType").innerHTML = "Ha seleccionado cuenta bancaria"
+    document.getElementById("selectPaymentMethod").innerHTML = "Cambiar";
+})
+
+
 
 
 
