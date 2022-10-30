@@ -37,7 +37,7 @@ if (localStorage.length > 3) {
                             <td scope="row"><img src="${data2.images[0]}" class="img-thumbnail" style="max-width: 50%"></td>
                             <td>${data2.name}</td>
                             <td>${data2.currency + ` ` + data2.cost}</td>   
-                            <td><input value="1" type="number" min="0" id="cant`+ i + `" onchange="subtotalArt(${localStorage.getItem(localStorage.key(i))}, ${i}); sumOfSubtotals()" ></td>
+                            <td><input value="1" type="number" min="0" id="cant`+ i + `" onchange="subtotalArt(${localStorage.getItem(localStorage.key(i))}, ${i}); sumOfSubtotals(); shippingCostAndTotal()" ></td>
                             <td id="subtotal`+ i + `" class="cartElement">${data2.currency + ` ` + data2.cost}</td>
                             </tr>
                             `
@@ -66,7 +66,7 @@ function showProdInCart(Articles) {
             <td scope="row"><img src="${articulo.image}" class="img-thumbnail" style="max-width: 50%"></td>
             <td>${articulo.name}</td>
             <td>${articulo.currency + ` ` + articulo.unitCost}</td>   
-            <td><input value="1" type="number" min="0" id="cant" onchange="subtotal(); sumOfSubtotals()"></td>
+            <td><input value="1" type="number" min="0" id="cant" onchange="subtotal(); sumOfSubtotals(); shippingCostAndTotal();"></td>
             <td id="subtotal" class="cartElement">${articulo.currency + ` ` + articulo.unitCost}</td>
         </tr>
         `
@@ -111,14 +111,29 @@ function sumOfSubtotals(){
         subtotal1 += element;
        
     }
-    document.getElementById("finalSubtotal").innerHTML ="USD "+ subtotal1;
+    document.getElementById("finalSubtotal").innerHTML ="USD "+ subtotal1.toFixed(2);
+    shippingCostAndTotal();
     
 }
-
 
 function convertUYtoUSD(price) {
     price = price / 40;
     return price;
+}
+
+function shippingCostAndTotal(){
+    let subtotal = parseFloat(document.getElementById("finalSubtotal").innerHTML.slice(3));
+    let cost;
+    if (document.getElementById("standard").checked){
+        cost =subtotal * 0.05;
+    } else if (document.getElementById("express").checked){
+        cost = subtotal * 0.07;
+    } else {
+        cost = subtotal * 0.15;
+    }
+    let total = cost + subtotal;
+    document.getElementById("finalshippingCost").innerHTML ="USD "+ cost.toFixed(2);
+    document.getElementById("total").innerHTML = "USD "+ total.toFixed(2);
 }
 
 document.getElementById("creditCardPaymentRadio").addEventListener("change", function () {

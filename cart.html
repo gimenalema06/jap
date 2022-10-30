@@ -75,12 +75,12 @@
     </div>
     <div class="container p-4 border mt-4">
       <h4 class="p-1">Tipos de envío</h4>
-      <input type="radio" name="envio" class="envio" id="premium">
-      <label>Premium 2 a 5 días</label><br>
-      <input type="radio" name="envio" class="envio" id="express">
-      <label>Express 5 a 8 días</label><br>
-      <input type="radio" name="envio" class="envio" id="standard">
-      <label>Standard 10 a 15 días</label>
+      <input type="radio" name="envio" class="envio" id="premium" onchange="shippingCostAndTotal()" checked>
+      <label>Premium 2 a 5 días (15%)</label><br>
+      <input type="radio" name="envio" class="envio" id="express" onchange="shippingCostAndTotal()">
+      <label>Express 5 a 8 días (7%)</label><br>
+      <input type="radio" name="envio" class="envio" id="standard" onchange="shippingCostAndTotal()">
+      <label>Standard 10 a 15 días (5%)</label>
     </div>
     <div class="container direccion mt-4 border p-4">
       <h4 style="margin-bottom:20px ;">Dirección de envío</h4>
@@ -114,6 +114,7 @@
           <li class="list-group-item d-flex justify-content-between lh-condensed">
             <div>
               <h6 class="my-0">Costo de envío</h6>
+              <h6 class="my-0" id="finalshippingCost"></h6>
               <small class="text-muted">Según el tipo de envío</small> 
             </div>
             <span class="text-muted" id="shippingText"></span>
@@ -121,6 +122,7 @@
           <li class="list-group-item d-flex justify-content-between">
             <div>
               <h6 class="my-0">Total ($)</h6>
+              <h6 class="my-0" id="total"></h6>
             </div>
             <strong id="totalCostText"></strong>
           </li>
