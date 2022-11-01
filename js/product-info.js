@@ -16,7 +16,7 @@ fetch(PRODUCT_INFO_URL + localStorage.getItem("productID") + EXT_TYPE)
         <strong>Cantidad de Vendidos</strong>
         <p>${data.soldCount}</p>
         <strong>Imágenes ilustrativas</strong>
-        <div id="images">
+        <div id="images" class="container">
         <figure class="icon-cards">
         <div class="icon-cards__content" onclick="pause_start()" id="carrusel"> 
             <div class="icon-cards__item d-flex align-items-center justify-content-center"><span class="h1"><img src=${data.images[0]} style="width:460px"></span></div>
