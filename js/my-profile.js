@@ -1,3 +1,10 @@
+let email = localStorage.getItem("email");
+document.getElementById("email").value = email;
+
+
+
+
+
 if (localStorage.getItem("user")) {
     let htmlContentToAppend = "";
     htmlContentToAppend += `
