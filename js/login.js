@@ -3,5 +3,12 @@ document.getElementById("ingreso").addEventListener("click" , function(){
     localStorage.setItem("email", email);
     let emailAnalizado = /^([^]+)@(\w+).(\w+)$/.exec(email);
     localStorage.setItem("user", emailAnalizado[1]);
+    localStorage.setItem("userFirstName", "");
+    localStorage.setItem("userFirstSurname", "");
+    localStorage.setItem("userPhone", "");
+    localStorage.setItem("userSecondName", "");
+    localStorage.setItem("userSecondSurname", "");
+
+
     SubmitEvent();
 })

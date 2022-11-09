@@ -1,5 +1,52 @@
+let firstName = document.getElementById("primerNombre");
+let firstSurname = document.getElementById("primerApellido");
+let phone = document.getElementById("telefono");
+let secondName = document.getElementById("segundoNombre");
+let secondSurname = document.getElementById("segundoApellido");
+
+firstName.value = localStorage.getItem("userFirstName");
+firstSurname.value = localStorage.getItem("userFirstSurname"); 
+phone.value = localStorage.getItem("userPhone");
+secondName.value = localStorage.getItem("userSecondName");  
+secondSurname.value = localStorage.getItem("userSecondSurname");   
+
 let email = localStorage.getItem("email");
 document.getElementById("email").value = email;
+
+
+document.getElementById("profile-form").addEventListener("submit", e=>{
+    let verification = false;
+    e.preventDefault();
+    e.stopPropagation();
+
+    if (firstName.value == ""){
+        firstName.classList.add('is-invalid');
+        verification = true;
+    } else {
+        firstName.classList.remove('is-invalid');
+    }
+    if (firstSurname.value == ""){
+        firstSurname.classList.add('is-invalid');
+        verification = true;
+    } else {
+        firstSurname.classList.remove('is-invalid');
+    }
+    if (phone.value == ""){
+        phone.classList.add('is-invalid');
+        verification = true;
+    } else {
+        phone.classList.remove('is-invalid');
+    }
+
+    if (!verification){
+        localStorage.setItem("userFirstName", firstName.value);
+        localStorage.setItem("userFirstSurname", firstSurname.value);
+        localStorage.setItem("userPhone", phone.value);
+        localStorage.setItem("userSecondName", secondName.value);
+        localStorage.setItem("userSecondSurname", secondSurname.value);
+    }
+
+})
 
 
 
