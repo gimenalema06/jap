@@ -8,6 +8,7 @@ document.getElementById("ingreso").addEventListener("click" , function(){
     localStorage.setItem("userPhone", "");
     localStorage.setItem("userSecondName", "");
     localStorage.setItem("userSecondSurname", "");
+    localStorage.setItem("userImage", "img/img_perfil.png");
 
 
     SubmitEvent();

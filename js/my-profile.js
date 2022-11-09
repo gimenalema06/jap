@@ -4,21 +4,22 @@ let phone = document.getElementById("telefono");
 let secondName = document.getElementById("segundoNombre");
 let secondSurname = document.getElementById("segundoApellido");
 
+
 firstName.value = localStorage.getItem("userFirstName");
 firstSurname.value = localStorage.getItem("userFirstSurname"); 
 phone.value = localStorage.getItem("userPhone");
 secondName.value = localStorage.getItem("userSecondName");  
-secondSurname.value = localStorage.getItem("userSecondSurname");   
+secondSurname.value = localStorage.getItem("userSecondSurname"); 
+
+let userImg= localStorage.getItem("userImage");
+document.getElementById("image").src = userImg;
 
 let email = localStorage.getItem("email");
 document.getElementById("email").value = email;
 
 
-document.getElementById("profile-form").addEventListener("submit", e=>{
+function validations(){
     let verification = false;
-    e.preventDefault();
-    e.stopPropagation();
-
     if (firstName.value == ""){
         firstName.classList.add('is-invalid');
         verification = true;
@@ -44,12 +45,36 @@ document.getElementById("profile-form").addEventListener("submit", e=>{
         localStorage.setItem("userPhone", phone.value);
         localStorage.setItem("userSecondName", secondName.value);
         localStorage.setItem("userSecondSurname", secondSurname.value);
+        localStorage.setItem("userImage", userImg);
     }
+}
+document.getElementById("profile-form").addEventListener("submit", e=>{
+    e.preventDefault();
+    e.stopPropagation();
+    validations();
 
 })
 
+//desafiate
+function encodeImageFileAsURL() {
 
+    let filesSelected = document.getElementById("inputFileToLoad").files;
+    if (filesSelected.length > 0) {
+      let fileToLoad = filesSelected[0];
 
+      let fileReader = new FileReader();
+
+      fileReader.onload = function(fileLoadedEvent) {
+        let srcData = fileLoadedEvent.target.result; // <--- data: base64
+
+        let newImage = document.getElementById("image");
+        newImage.src = srcData;
+        userImg = srcData;
+        document.getElementById("image").innerHTML = newImage.outerHTML;
+      }
+      fileReader.readAsDataURL(fileToLoad);
+    }
+  }
 
 
 if (localStorage.getItem("user")) {
