@@ -183,30 +183,6 @@ function checkPaymentMethod() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 if (localStorage.getItem("user")) {
     let htmlContentToAppend = "";
     htmlContentToAppend += `
@@ -248,5 +224,6 @@ if (localStorage.getItem("user")) {
         `
         document.getElementById("User_place").innerHTML = htmlContentToAppend;
         localStorage.removeItem("user");
+        window.location = "index.html";
     })
 }
